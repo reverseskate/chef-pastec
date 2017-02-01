@@ -12,13 +12,10 @@ verifier:
 platforms:
   - name: ubuntu-14.04
     driver_config:
-     # image: phusion/baseimage
       provision_command:
-      #  - rm -f /etc/service/sshd/down
         - apt-get update
         - apt-get install net-tools
         - apt-get install lsof
-      #run_command: /sbin/my_init
 
 suites:
   - name: default
