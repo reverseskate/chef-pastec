@@ -1,0 +1,10 @@
+name 'pastec'
+maintainer 'Michael F. Weinberg'
+maintainer_email 'michael@luckymike.com'
+license 'all_rights'
+description 'Installs/Configures pastec'
+long_description 'Installs/Configures pastec (http://pastec.io/)'
+version '0.1.0'
+
+depends 'ark'
+depends 'pleaserun'

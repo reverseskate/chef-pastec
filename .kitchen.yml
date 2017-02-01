@@ -1,0 +1,31 @@
+---
+driver:
+  name: docker
+  use_sudo: false
+
+provisioner:
+  name: chef_zero
+
+verifier:
+  name: inspec
+
+platforms:
+  - name: ubuntu-14.04
+    driver_config:
+     # image: phusion/baseimage
+      provision_command:
+      #  - rm -f /etc/service/sshd/down
+        - apt-get update
+        - apt-get install net-tools
+        - apt-get install lsof
+      #run_command: /sbin/my_init
+
+suites:
+  - name: default
+    driver_config:
+      forward:
+      - 8888:80
+      - 4242:4212
+    run_list:
+      - recipe[pastec::default]
+    attributes:

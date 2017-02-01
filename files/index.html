@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Image search</title>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+</head>
+
+<body>
+<div class="col-sm-6 col-sm-offset-3">
+  <h1>Add an Image to the Database</h1>
+
+  <form name="uploadForm">
+    <div class="form-group">
+      <label>Choose file</label>
+      <input id="uploadInput" type="file">
+      <button id="send">Send</button>
+    </div>
+  </form>
+<script type="text/javascript">
+  var baseUrl = 'http://ec2-54-218-207-44.us-west-2.compute.amazonaws.com:4212'
+  $("#send").on('click', function (e) {
+    e.preventDefault();
+    var file = $('#uploadInput').get(0).files[0];
+    var reader = new FileReader();  
+    reader.onload = function(evt) {
+    $.ajax({
+      url: "/index/images/" + Math.round(Math.random() * 1000),
+      type: 'PUT',
+      data:evt.target.result,
+      processData: false,
+      contentType: 'application/octet-stream',
+      success: function (data) {
+        console.log(data)
+      }
+    })
+  };
+  reader.readAsArrayBuffer(file);
+  
+})
+</script>
+</body>
+</html>
